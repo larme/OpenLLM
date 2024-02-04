@@ -114,8 +114,11 @@ class LLM(t.Generic[M, T]):
 
     try:
       async for out in generator:
+        print("aaa", out)
         out = out.data
+        print("bbb", out)
         generated = GenerationOutput.from_runner(out).with_options(prompt=prompt)
+        print("ccc", generated)
         delta_outputs = [None] * len(generated.outputs)
         for output in generated.outputs:
           i = output.index
